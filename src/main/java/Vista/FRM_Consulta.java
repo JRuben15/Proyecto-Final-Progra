@@ -6,7 +6,7 @@ package Vista;
 
 /**
  *
- * @author Rubén Delgado C
+ * @author
  */
 public class FRM_Consulta extends javax.swing.JFrame {
 
@@ -81,4 +81,4 @@ public class FRM_Consulta extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTBUsuarios;
     // End of variables declaration//GEN-END:variables
-}
+}//Fin Class
