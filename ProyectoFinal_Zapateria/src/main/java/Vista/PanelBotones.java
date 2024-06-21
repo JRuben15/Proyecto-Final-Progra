@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Rubén Delgado C
@@ -16,7 +18,22 @@ public class PanelBotones extends javax.swing.JPanel {
     public PanelBotones() {
         initComponents();
     }
-
+    
+    public void escuchadorBotones(ActionListener manejador) {
+        jBTNCrear.addActionListener(manejador);
+        jBTNModificar.addActionListener(manejador);
+        jBTNConsultar.addActionListener(manejador);
+        jBTNEliminar.addActionListener(manejador);
+        jBTNSalir.addActionListener(manejador);
+    }
+    
+    /*
+    public void activarBotones(boolean estado) {
+        this.jBEditar.setEnabled(estado);
+        this.jBEliminar.setEnabled(estado);
+    }//Fin Metodo Activar Botones
+    */
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,6 +47,7 @@ public class PanelBotones extends javax.swing.JPanel {
         jBTNConsultar = new javax.swing.JButton();
         jBTNModificar = new javax.swing.JButton();
         jBTNEliminar = new javax.swing.JButton();
+        jBTNSalir = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 255, 204));
 
@@ -45,6 +63,9 @@ public class PanelBotones extends javax.swing.JPanel {
         jBTNEliminar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jBTNEliminar.setText("Eliminar");
 
+        jBTNSalir.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jBTNSalir.setText("Salir");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -54,23 +75,30 @@ public class PanelBotones extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jBTNModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBTNCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBTNConsultar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBTNEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55))
+                .addGap(18, 18, 18)
+                .addComponent(jBTNSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBTNConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBTNEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBTNCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBTNConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBTNModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBTNEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBTNConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBTNCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBTNModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBTNEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jBTNSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -81,5 +109,6 @@ public class PanelBotones extends javax.swing.JPanel {
     private javax.swing.JButton jBTNCrear;
     private javax.swing.JButton jBTNEliminar;
     private javax.swing.JButton jBTNModificar;
+    private javax.swing.JButton jBTNSalir;
     // End of variables declaration//GEN-END:variables
 }

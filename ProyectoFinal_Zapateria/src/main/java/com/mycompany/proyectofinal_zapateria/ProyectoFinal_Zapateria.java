@@ -4,6 +4,8 @@
 
 package com.mycompany.proyectofinal_zapateria;
 
+import Controlador.ControladorLogin;
+
 /**
  *
  * @author
@@ -11,6 +13,7 @@ package com.mycompany.proyectofinal_zapateria;
 public class ProyectoFinal_Zapateria {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        //new ControladorLogin();
+        new ControladorLogin();
     }
 }//Fin CLASS

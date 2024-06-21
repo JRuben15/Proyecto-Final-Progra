@@ -4,9 +4,12 @@
  */
 package Vista;
 
+import java.awt.event.MouseListener;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author Rubén Delgado C
+ * @author
  */
 public class FRM_Consulta extends javax.swing.JFrame {
 
@@ -16,6 +19,29 @@ public class FRM_Consulta extends javax.swing.JFrame {
     public FRM_Consulta() {
         initComponents();
     }
+    
+     //Metodo para Llenar la tabla:
+    public void setDataTable(String[][] datos, String[] encabezado)
+    {
+        this.jTBUsuarios.setModel(new DefaultTableModel(datos, encabezado));
+        this.jScrollPane1.setViewportView(this.jTBUsuarios); //Cargar la Tabla y se vea la barra de Desplazamiento.
+    }//Fin Metodo
+    
+    //Devuelva Titulo de lo seleccionado (Llenar espacios)
+    public String[] getDataRow() {
+        String[] datosUsuarios = new String[this.jTBUsuarios.getColumnCount()];
+        int filaSeleccionada = this.jTBUsuarios.getSelectedRow();
+        
+        for(int i = 0; i < datosUsuarios.length; i++) {
+            datosUsuarios[i] = this.jTBUsuarios.getValueAt(filaSeleccionada, i).toString();
+        }//Fin FOR
+        return datosUsuarios;
+    }//Fin Metodo DataRow
+    
+    //Escuchar tabla cuando se seleccione
+    public void escucharMouse(MouseListener manejador) {
+        this.jTBUsuarios.addMouseListener(manejador);
+    }//Fin Metodo escuchar Mouse
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -81,4 +107,4 @@ public class FRM_Consulta extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTBUsuarios;
     // End of variables declaration//GEN-END:variables
-}
+}//Fin Class

@@ -4,9 +4,12 @@
  */
 package Vista;
 
+import Controlador.Controlador_Menu;
+import java.awt.event.ActionListener;
+
 /**
  *
- * @author Rubén Delgado C
+ * @author
  */
 public class FRM_Menu extends javax.swing.JFrame {
 
@@ -16,6 +19,12 @@ public class FRM_Menu extends javax.swing.JFrame {
     public FRM_Menu() {
         initComponents();
     }
+    
+    public void escuchadorMenu(ActionListener manejador) {
+        this.jMenuItem2Salir.addActionListener(manejador);
+        this.jMenuItem5Registro.addActionListener(manejador);
+      
+    }//Fin Metodo escuchadorMenus
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,11 +38,12 @@ public class FRM_Menu extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jPanelMenu = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem5Registro = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem2Salir = new javax.swing.JMenuItem();
 
         jMenu3.setText("jMenu3");
 
@@ -46,36 +56,44 @@ public class FRM_Menu extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(102, 153, 255));
         jLabel1.setText("Bienvenid@");
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ordenador-personalMenu.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanelMenuLayout = new javax.swing.GroupLayout(jPanelMenu);
         jPanelMenu.setLayout(jPanelMenuLayout);
         jPanelMenuLayout.setHorizontalGroup(
             jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMenuLayout.createSequentialGroup()
-                .addContainerGap(75, Short.MAX_VALUE)
+                .addContainerGap(57, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(70, 70, 70))
+                .addGap(47, 47, 47))
+            .addGroup(jPanelMenuLayout.createSequentialGroup()
+                .addGap(81, 81, 81)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelMenuLayout.setVerticalGroup(
             jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMenuLayout.createSequentialGroup()
-                .addGap(69, 69, 69)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(204, 255, 204));
 
         jMenu1.setText("Gestión Usuarios");
 
-        jMenuItem5.setText("Registro Usuarios");
-        jMenu1.add(jMenuItem5);
+        jMenuItem5Registro.setText("Registro Usuarios");
+        jMenu1.add(jMenuItem5Registro);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Salir");
 
-        jMenuItem2.setText("Salir");
-        jMenu2.add(jMenuItem2);
+        jMenuItem2Salir.setText("Salir");
+        jMenu2.add(jMenuItem2Salir);
 
         jMenuBar1.add(jMenu2);
 
@@ -102,12 +120,13 @@ public class FRM_Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem2Salir;
+    private javax.swing.JMenuItem jMenuItem5Registro;
     private javax.swing.JPanel jPanelMenu;
     // End of variables declaration//GEN-END:variables
 }

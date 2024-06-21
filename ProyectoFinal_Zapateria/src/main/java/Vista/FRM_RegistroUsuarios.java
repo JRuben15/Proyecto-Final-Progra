@@ -4,19 +4,59 @@
  */
 package Vista;
 
+import Modelo.Usuarios;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author Rubén Delgado C
+ * @author 
  */
 public class FRM_RegistroUsuarios extends javax.swing.JFrame {
+    Usuarios usuarios;
 
     /**
      * Creates new form FRM_RegistroUsuarios
      */
     public FRM_RegistroUsuarios() {
         initComponents();
+        usuarios = new Usuarios();
+    }
+    
+    public PanelBotones getPanelBotones() {
+        return this.panelBotones1;
+    }
+    
+    public void escuchadorGeneral(ActionListener manejador){
+        panelBotones1.escuchadorBotones(manejador);
+    }
+    
+    public void mensaje(String mensaje){
+        JOptionPane.showMessageDialog(this, mensaje);
     }
 
+    public Usuarios getUsuario(){
+        return new Usuarios(this.jTFRegistroUsuario.getText(), 
+                            this.jTFNombre.getText(),
+                         this.jTFRegistroContrasenna.getText(),
+                            this.jTFPerfil.getText());             
+    }
+    
+    public void setUsuario(Usuarios usuarios){
+        this.jTFRegistroUsuario.setText(usuarios.getUsuario());
+        this.jTFNombre.setText(usuarios.getNombre());
+        this.jTFRegistroContrasenna.setText(usuarios.getContrasenna());     
+        this.jTFPerfil.setText(usuarios.getPerfil());
+    }
+    
+    public void limpiar(){
+        this.jTFRegistroUsuario.setText("");
+        this.jTFNombre.setText("");
+        this.jTFRegistroContrasenna.setText("");
+        this.jTFPerfil.setText("");
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,7 +66,6 @@ public class FRM_RegistroUsuarios extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jBGOpcionesPerfil = new javax.swing.ButtonGroup();
         jPanelRegistroUsuarios = new javax.swing.JPanel();
         jPanelRegistro = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -37,8 +76,7 @@ public class FRM_RegistroUsuarios extends javax.swing.JFrame {
         jTFRegistroUsuario = new javax.swing.JTextField();
         jTFNombre = new javax.swing.JTextField();
         jTFRegistroContrasenna = new javax.swing.JTextField();
-        jRBAdministrador = new javax.swing.JRadioButton();
-        jRBVisitante = new javax.swing.JRadioButton();
+        jTFPerfil = new javax.swing.JTextField();
         panelBotones1 = new Vista.PanelBotones();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,53 +98,37 @@ public class FRM_RegistroUsuarios extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel5.setText("Perfil:");
 
-        jBGOpcionesPerfil.add(jRBAdministrador);
-        jRBAdministrador.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jRBAdministrador.setText("Administrador");
-        jRBAdministrador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRBAdministradorActionPerformed(evt);
-            }
-        });
-
-        jBGOpcionesPerfil.add(jRBVisitante);
-        jRBVisitante.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jRBVisitante.setText("Visitante");
-
         javax.swing.GroupLayout jPanelRegistroLayout = new javax.swing.GroupLayout(jPanelRegistro);
         jPanelRegistro.setLayout(jPanelRegistroLayout);
         jPanelRegistroLayout.setHorizontalGroup(
             jPanelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelRegistroLayout.createSequentialGroup()
-                .addGroup(jPanelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelRegistroLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel2)
-                        .addGap(39, 39, 39))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRegistroLayout.createSequentialGroup()
-                        .addContainerGap()
+                .addGroup(jPanelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelRegistroLayout.createSequentialGroup()
                         .addGroup(jPanelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(jPanelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelRegistroLayout.createSequentialGroup()
-                        .addComponent(jTFRegistroUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRBAdministrador)
-                        .addGap(26, 26, 26))
-                    .addComponent(jTFRegistroContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelRegistroLayout.createSequentialGroup()
-                        .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRBVisitante, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))))
-            .addGroup(jPanelRegistroLayout.createSequentialGroup()
-                .addGap(168, 168, 168)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanelRegistroLayout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel2)
+                                .addGap(39, 39, 39))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRegistroLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(jPanelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelRegistroLayout.createSequentialGroup()
+                                .addComponent(jTFRegistroUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTFPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTFRegistroContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelRegistroLayout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(jLabel1)))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanelRegistroLayout.setVerticalGroup(
             jPanelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,18 +140,12 @@ public class FRM_RegistroUsuarios extends javax.swing.JFrame {
                     .addComponent(jTFRegistroUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel5)
-                    .addComponent(jRBAdministrador))
-                .addGroup(jPanelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelRegistroLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(27, 27, 27))
-                    .addGroup(jPanelRegistroLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRBVisitante)
-                        .addGap(8, 8, 8)))
+                    .addComponent(jTFPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTFNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(27, 27, 27)
                 .addGroup(jPanelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTFRegistroContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
@@ -140,41 +156,38 @@ public class FRM_RegistroUsuarios extends javax.swing.JFrame {
         jPanelRegistroUsuarios.setLayout(jPanelRegistroUsuariosLayout);
         jPanelRegistroUsuariosLayout.setHorizontalGroup(
             jPanelRegistroUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRegistroUsuariosLayout.createSequentialGroup()
+            .addGroup(jPanelRegistroUsuariosLayout.createSequentialGroup()
+                .addComponent(jPanelRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanelRegistroUsuariosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelBotones1, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(panelBotones1, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelRegistroUsuariosLayout.setVerticalGroup(
             jPanelRegistroUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelRegistroUsuariosLayout.createSequentialGroup()
                 .addComponent(jPanelRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelBotones1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelBotones1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelRegistroUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanelRegistroUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanelRegistroUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jRBAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBAdministradorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRBAdministradorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,7 +195,6 @@ public class FRM_RegistroUsuarios extends javax.swing.JFrame {
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup jBGOpcionesPerfil;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -190,9 +202,8 @@ public class FRM_RegistroUsuarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanelRegistro;
     private javax.swing.JPanel jPanelRegistroUsuarios;
-    private javax.swing.JRadioButton jRBAdministrador;
-    private javax.swing.JRadioButton jRBVisitante;
     private javax.swing.JTextField jTFNombre;
+    private javax.swing.JTextField jTFPerfil;
     private javax.swing.JTextField jTFRegistroContrasenna;
     private javax.swing.JTextField jTFRegistroUsuario;
     private Vista.PanelBotones panelBotones1;
