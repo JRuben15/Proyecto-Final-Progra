@@ -31,18 +31,24 @@ public class ControladorLogin implements ActionListener {
         ventanaLogin.escuchador(this);
         ventanaLogin.setVisible(true);
     }
-    
-     public void cargarVentana(){
-        ventanaLogin.setVisible(true);
-    }
      
     @Override
     public void actionPerformed(ActionEvent ae)
     {
         switch(ae.getActionCommand().toString()) {
             case "Ingresar":
-                ventanaLogin.configurarLogin(usuarios, usuarios.getUsuario(), usuarios.getContrasenna());
-                ventanaMenu.setVisible(true);
+                if(ventanaLogin.getjTFUsuario().isEmpty() || ventanaLogin.getjTFContrasenna().isEmpty())
+                {
+                    ventanaLogin.mostrarMensaje("Error! Existe algun campo vacio.");                 
+                } else {
+                    if(ventanaLogin.getjTFUsuario().equals(usuarios.getUsuario()) && ventanaLogin.getjTFContrasenna().equals(usuarios.getContrasenna())) {
+                        ventanaMenu.setVisible(true);
+                        ventanaLogin.limpiar();
+                    }else{
+                        ventanaLogin.mostrarMensaje("No se pudo ingresar al sistema.");
+                        ventanaLogin.limpiar();
+                }
+            }  
             break;
             
             case "Salir":
