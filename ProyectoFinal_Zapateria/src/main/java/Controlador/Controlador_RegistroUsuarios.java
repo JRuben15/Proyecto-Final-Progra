@@ -17,7 +17,7 @@ import java.awt.event.MouseListener;
  *
  * @author
  */
-public class Controlador_RegistroUsuarios implements ActionListener {//, MouseListener {
+public class Controlador_RegistroUsuarios implements ActionListener { //, MouseListener {
      private FRM_RegistroUsuarios ventanaRegistroU;
      private PanelBotones panelBotones;
      private Usuarios usuarios;
@@ -40,13 +40,13 @@ public class Controlador_RegistroUsuarios implements ActionListener {//, MouseLi
     public void actionPerformed(ActionEvent e) {
        switch(e.getActionCommand()){
            case "Crear":
-               this.usuarios =ventanaRegistroU.getUsuario();
-                ventanaRegistroU.mensaje(usuarioController.create(usuarios));
-                ventanaRegistroU.limpiar();    
+               //this.usuarios = ventanaRegistroU.getUsuario();
+               ventanaRegistroU.mensaje(usuarioController.create(usuarios));
+               ventanaRegistroU.limpiar();    
            break;
-            
+    
            case "Modificar":
-               this.usuarios = ventanaRegistroU.getUsuario();
+              // this.usuarios = ventanaRegistroU.getUsuario();
                ventanaRegistroU.mensaje(usuarioController.edit(usuarios));
                ventanaRegistroU.limpiar();
            break;
@@ -63,6 +63,7 @@ public class Controlador_RegistroUsuarios implements ActionListener {//, MouseLi
            
            case "Salir":
                ventanaRegistroU.dispose(); 
+               new Controlador_Menu();
            break;
        }
     }  
@@ -76,4 +77,6 @@ public class Controlador_RegistroUsuarios implements ActionListener {//, MouseLi
                                                       this.ventanaConsulta.getDataRow()[3]);
     }//Fin Metodo
 */
+    
+    
 }//Fin Class

@@ -13,7 +13,6 @@ import Controlador.ControladorLogin;
 public class ProyectoFinal_Zapateria {
 
     public static void main(String[] args) {
-        //new ControladorLogin();
         new ControladorLogin();
     }
 }//Fin CLASS

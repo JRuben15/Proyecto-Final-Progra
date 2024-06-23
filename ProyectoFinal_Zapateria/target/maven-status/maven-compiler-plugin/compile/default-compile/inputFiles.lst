@@ -4,12 +4,15 @@ C:\Users\Rubén Delgado C\OneDrive\Escritorio\ProyectoFinal_Zapateria\src\main\ja
 C:\Users\Rubén Delgado C\OneDrive\Escritorio\ProyectoFinal_Zapateria\src\main\java\Vista\FRM_Menu.java
 C:\Users\Rubén Delgado C\OneDrive\Escritorio\ProyectoFinal_Zapateria\src\main\java\Controlador\Controlador_RegistroUsuarios.java
 C:\Users\Rubén Delgado C\OneDrive\Escritorio\ProyectoFinal_Zapateria\src\main\java\Vista\PanelBotones.java
+C:\Users\Rubén Delgado C\OneDrive\Escritorio\ProyectoFinal_Zapateria\src\main\java\Modelo\RegistroTabla.java
 C:\Users\Rubén Delgado C\OneDrive\Escritorio\ProyectoFinal_Zapateria\src\main\java\Vista\FRM_Consulta.java
+C:\Users\Rubén Delgado C\OneDrive\Escritorio\ProyectoFinal_Zapateria\src\main\java\Modelo\RegistroUsuarios.java
 C:\Users\Rubén Delgado C\OneDrive\Escritorio\ProyectoFinal_Zapateria\src\main\java\Controlador\ControladorLogin.java
 C:\Users\Rubén Delgado C\OneDrive\Escritorio\ProyectoFinal_Zapateria\src\main\java\Vista\FRM_RegistroUsuarios.java
 C:\Users\Rubén Delgado C\OneDrive\Escritorio\ProyectoFinal_Zapateria\src\main\java\Controlador\exceptions\NonexistentEntityException.java
+C:\Users\Rubén Delgado C\OneDrive\Escritorio\ProyectoFinal_Zapateria\src\main\java\Modelo\RegistroLogin.java
 C:\Users\Rubén Delgado C\OneDrive\Escritorio\ProyectoFinal_Zapateria\src\main\java\Modelo\Usuarios.java
 C:\Users\Rubén Delgado C\OneDrive\Escritorio\ProyectoFinal_Zapateria\src\main\java\Vista\FRM_Login.java
 C:\Users\Rubén Delgado C\OneDrive\Escritorio\ProyectoFinal_Zapateria\src\main\java\Controlador\exceptions\PreexistingEntityException.java
-C:\Users\Rubén Delgado C\OneDrive\Escritorio\ProyectoFinal_Zapateria\src\main\java\Controlador\RegistroUsuarios.java
+C:\Users\Rubén Delgado C\OneDrive\Escritorio\ProyectoFinal_Zapateria\src\main\java\Modelo\Conexion.java
 C:\Users\Rubén Delgado C\OneDrive\Escritorio\ProyectoFinal_Zapateria\src\main\java\Controlador\UsuariosJpaController.java

@@ -57,6 +57,7 @@ public class FRM_Consulta extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Consulta");
 
         jTBUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -5,17 +5,21 @@
 package Vista;
 
 import Controlador.ControladorLogin;
+import Controlador.Controlador_Menu;
+import Modelo.RegistroLogin;
 import Modelo.Usuarios;
 import java.awt.event.ActionListener;
-import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Rubén Delgado C
  */
 public class FRM_Login extends javax.swing.JFrame {
+    RegistroLogin registroL;
     Usuarios usuarios;
     
     /**
@@ -23,6 +27,7 @@ public class FRM_Login extends javax.swing.JFrame {
      */
     public FRM_Login() {
         initComponents();
+        registroL = new RegistroLogin();
         usuarios = new Usuarios();
     }
     
@@ -48,17 +53,16 @@ public class FRM_Login extends javax.swing.JFrame {
         jPWContrasenna.setText(""); 
     }
     
-      public boolean validarInicioSecion(Usuarios usuarios, String usuario, String contrasenna, String perfil){
-        if(usuarios.getUsuario().equals(usuario) && usuarios.getContrasenna().equals(contrasenna) && usuarios.getPerfil().equals(perfil)){
-            return true;
+    public void login() {
+        if(jTFUsuario.getText().isEmpty() || jPWContrasenna.getText().isEmpty()) {
+            mostrarMensaje("No pueden existir campos vacios.");
+        }else{
+            registroL.validacionUsuario(jTFUsuario, jPWContrasenna);
+            this.limpiar();
+            this.dispose(); 
         }
-        return false;
     }
-      
-    
-      
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

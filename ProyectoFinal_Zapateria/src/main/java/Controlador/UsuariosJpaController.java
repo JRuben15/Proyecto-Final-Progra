@@ -5,7 +5,6 @@
 package Controlador;
 
 import Controlador.exceptions.NonexistentEntityException;
-import Controlador.exceptions.PreexistingEntityException;
 import Modelo.Usuarios;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ import javax.persistence.criteria.Root;
 
 /**
  *
- * @author
+ * @author Rubén Delgado C
  */
 public class UsuariosJpaController implements Serializable {
     private EntityManagerFactory emf = null;
@@ -28,7 +27,7 @@ public class UsuariosJpaController implements Serializable {
     public UsuariosJpaController( ) {
         this.emf = Persistence.createEntityManagerFactory("PersistenciaUsuarios");
     }
-    
+
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
@@ -40,10 +39,10 @@ public class UsuariosJpaController implements Serializable {
             em.getTransaction().begin();
             em.persist(usuarios);
             em.getTransaction().commit();
-            return "Usuario agregado correctamente!";
+            return "Usuario agregado!";
         } catch (Exception ex) {
-            if (findUsuarios(usuarios.getUsuario()) != null) {
-                 return "El usuario " + usuarios + " ya existe";
+            if (findUsuarios(usuarios.getId()) != null) {
+                return "El usuario " + usuarios + " ya existe";
             }
             throw ex;
         } finally {
@@ -51,8 +50,8 @@ public class UsuariosJpaController implements Serializable {
                 em.close();
             }
         }
-    }//Fin CREATE
-    
+    }
+
     public String edit(Usuarios usuarios) {
         EntityManager em = null;
         try {
@@ -60,13 +59,13 @@ public class UsuariosJpaController implements Serializable {
             em.getTransaction().begin();
             usuarios = em.merge(usuarios);
             em.getTransaction().commit();
-            return "El usuario fue modificado correctamente";
+            return "Usuario modificado correctamente";
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                String id = usuarios.getUsuario();
-                if (findUsuarios(usuarios.getUsuario()) == null) {
-                    return "No se puede modifcar, no se encontró ese Usuario";
+                Integer id = usuarios.getId();
+                if (findUsuarios(id) == null) {
+                    return "No se pudo modificar el usuario" +usuarios.getUsuario();
                 }
             }
             throw ex;
@@ -75,29 +74,29 @@ public class UsuariosJpaController implements Serializable {
                 em.close();
             }
         }
-    }//Fin EDIT
-    
-    public String destroy(String usuario) {
+    }
+
+    public String destroy(Integer id) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
             Usuarios usuarios;
             try {
-                usuarios = em.getReference(Usuarios.class, usuario);
-                usuarios.getUsuario();
+                usuarios = em.getReference(Usuarios.class, id);
+                usuarios.getId();
             } catch (EntityNotFoundException enfe) {
-                return "No se pudo eliminar ese Usuario.";
+                return "No se puede eliminar el usuario.";
             }
             em.remove(usuarios);
             em.getTransaction().commit();
-            return "El Usuario se ha eliminado correctamente";
+            return "Usuario eliminado correctamente";
         } finally {
             if (em != null) {
                 em.close();
             }
         }
-    }//Fin DESTROY
+    }
     
      private ArrayList<Usuarios> devolverLista() {
         EntityManager em = getEntityManager();
@@ -109,12 +108,12 @@ public class UsuariosJpaController implements Serializable {
         } finally {
             em.close();
         }
-    }//Fin ARRAYLIst
-
-    public Usuarios findUsuarios(String usuario) {
+    }
+     
+    public Usuarios findUsuarios(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Usuarios.class, usuario);
+            return em.find(Usuarios.class, id);
         } finally {
             em.close();
         }

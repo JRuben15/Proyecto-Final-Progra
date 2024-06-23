@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import Vista.FRM_Login;
 import Vista.FRM_Menu;
 import Vista.FRM_RegistroUsuarios;
 import java.awt.event.ActionEvent;
@@ -16,24 +17,27 @@ import java.awt.event.ActionListener;
 public class Controlador_Menu implements ActionListener {
     private FRM_Menu ventanaMenu;
     private FRM_RegistroUsuarios ventanaRegistro;
+    private FRM_Login ventanaLogin;
     
     public Controlador_Menu() {
         this.ventanaMenu = new FRM_Menu();
         this.ventanaRegistro = new FRM_RegistroUsuarios();
-        
+                
         this.ventanaMenu.escuchadorMenu(this);
-        ventanaMenu.setVisible(true);
+        this.ventanaMenu.setVisible(true);
     }
     
     @Override
     public void actionPerformed(ActionEvent ae) {
         switch(ae.getActionCommand()){
             case "Registro Usuarios":
-                ventanaRegistro.setVisible(true);
+                new Controlador_RegistroUsuarios();
+                ventanaMenu.dispose();
             break;
           
             case "Salir":
-                ventanaMenu.dispose();
+                    ventanaMenu.dispose();
+                    new ControladorLogin();
             break;
         }
     }

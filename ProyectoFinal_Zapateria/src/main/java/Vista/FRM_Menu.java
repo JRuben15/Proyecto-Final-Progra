@@ -23,7 +23,6 @@ public class FRM_Menu extends javax.swing.JFrame {
     public void escuchadorMenu(ActionListener manejador) {
         this.jMenuItem2Salir.addActionListener(manejador);
         this.jMenuItem5Registro.addActionListener(manejador);
-      
     }//Fin Metodo escuchadorMenus
 
     /**
@@ -48,6 +47,7 @@ public class FRM_Menu extends javax.swing.JFrame {
         jMenu3.setText("jMenu3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menú");
 
         jPanelMenu.setBackground(new java.awt.Color(255, 255, 204));
 

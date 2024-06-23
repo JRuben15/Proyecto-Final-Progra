@@ -8,6 +8,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -16,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author
+ * @author Rubén Delgado C
  */
 @Entity
 @Table(name = "tb_usuarios")
@@ -25,35 +27,32 @@ public class Usuarios implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
     @Column(name = "usuario")
     private String usuario;
-    @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    @Basic(optional = false)
     @Column(name = "contrasenna")
     private String contrasenna;
-    @Basic(optional = false)
     @Column(name = "perfil")
     private String perfil;
-    
-    //Crear Vector para Tabla
-    //Variable constante: No cambia su valor en el programa Nunca. Van en Mayúscula.
-    public static final String[] TITULOS_USUARIOS  = {"Usuario", "Nombre", "Contraseña", "Perfil"};
 
-    public Usuarios(String usuario, String nombre, String contrasenna, String perfil) {
-        this.usuario = usuario;
-        this.nombre = nombre;
-        this.contrasenna = contrasenna;
-        this.perfil = perfil;
+    public Usuarios() {
     }
-    
-     public Usuarios() {
-        this.usuario = "";
-        this.nombre = "";
-        this.contrasenna = "";
-        this.perfil = "";
+
+    public Usuarios(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUsuario() {
@@ -90,7 +89,6 @@ public class Usuarios implements Serializable {
 
     @Override
     public String toString() {
-        return "Usuarios{" + "usuario=" + usuario + ", nombre=" + nombre + ", contrasenna=" + contrasenna + ", perfil=" + perfil + '}';
+        return "Usuarios{" + "id=" + id + ", usuario=" + usuario + ", nombre=" + nombre + ", contrasenna=" + contrasenna + ", perfil=" + perfil + '}';
     }
-
-}//Fin CLASS
+}

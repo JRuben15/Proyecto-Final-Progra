@@ -35,12 +35,15 @@ public class FRM_RegistroUsuarios extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, mensaje);
     }
 
+    /*
     public Usuarios getUsuario(){
-        return new Usuarios(this.jTFRegistroUsuario.getText(), 
+        return new Usuarios(Integer.parseInt(this.usuarios.getId()),
+                            this.jTFRegistroUsuario.getText(), 
                             this.jTFNombre.getText(),
-                         this.jTFRegistroContrasenna.getText(),
+                             this.jTFRegistroContrasenna.getText(),
                             this.jTFPerfil.getText());             
     }
+    */
     
     public void setUsuario(Usuarios usuarios){
         this.jTFRegistroUsuario.setText(usuarios.getUsuario());
@@ -81,6 +84,7 @@ public class FRM_RegistroUsuarios extends javax.swing.JFrame {
         panelBotones1 = new Vista.PanelBotones();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Registro de Usuarios");
 
         jPanelRegistro.setBackground(new java.awt.Color(175, 231, 215));
 

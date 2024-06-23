@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import Modelo.RegistroLogin;
 import Modelo.Usuarios;
 import Vista.FRM_Login;
 import Vista.FRM_Menu;
@@ -20,7 +21,6 @@ public class ControladorLogin implements ActionListener {
     private Usuarios usuarios;
     private UsuariosJpaController usuariosController;
     
-    
     public ControladorLogin()
     {
         this.ventanaLogin = new FRM_Login();
@@ -29,7 +29,7 @@ public class ControladorLogin implements ActionListener {
         this.usuariosController = new UsuariosJpaController();
         
         ventanaLogin.escuchador(this);
-        ventanaLogin.setVisible(true);
+        ventanaLogin.setVisible(true);  
     }
      
     @Override
@@ -37,18 +37,7 @@ public class ControladorLogin implements ActionListener {
     {
         switch(ae.getActionCommand().toString()) {
             case "Ingresar":
-                if(ventanaLogin.getjTFUsuario().isEmpty() || ventanaLogin.getjTFContrasenna().isEmpty())
-                {
-                    ventanaLogin.mostrarMensaje("Error! Existe algun campo vacio.");                 
-                } else {
-                    if(ventanaLogin.getjTFUsuario().equals(usuarios.getUsuario()) && ventanaLogin.getjTFContrasenna().equals(usuarios.getContrasenna())) {
-                        ventanaMenu.setVisible(true);
-                        ventanaLogin.limpiar();
-                    }else{
-                        ventanaLogin.mostrarMensaje("No se pudo ingresar al sistema.");
-                        ventanaLogin.limpiar();
-                }
-            }  
+                ventanaLogin.login();
             break;
             
             case "Salir":

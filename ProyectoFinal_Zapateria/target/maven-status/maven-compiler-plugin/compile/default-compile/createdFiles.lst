@@ -1,10 +1,12 @@
 Controlador\UsuariosJpaController.class
 Vista\FRM_Consulta.class
-Controlador\RegistroUsuarios.class
 Vista\PanelBotones.class
 Controlador\exceptions\IllegalOrphanException.class
 Controlador\exceptions\NonexistentEntityException.class
+Modelo\RegistroUsuarios.class
 Vista\FRM_Menu.class
+Modelo\Conexion.class
+Modelo\RegistroLogin.class
 Modelo\Usuarios.class
 Controlador\ControladorLogin.class
 Vista\FRM_Login.class
@@ -15,3 +17,4 @@ Vista\FRM_Login$1.class
 Controlador\Controlador_RegistroUsuarios.class
 Controlador\exceptions\PreexistingEntityException.class
 Vista\FRM_Login$2.class
+Modelo\RegistroTabla.class
