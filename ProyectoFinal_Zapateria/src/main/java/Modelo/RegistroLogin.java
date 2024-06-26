@@ -4,6 +4,7 @@
  */
 package Modelo;
 
+import Controlador.Controlador_Consulta;
 import Controlador.Controlador_Menu;
 import Vista.FRM_Login;
 import com.mysql.cj.xdevapi.PreparableStatement;
@@ -28,7 +29,7 @@ public class RegistroLogin {
             
             Modelo.Conexion conexion = new Modelo.Conexion();
             
-            String consulta = "SELECT * FROM tb_usuarios WHERE tb_usuarios.usuario = (?) AND tb_usuarios.contrasenna = (?) And tb_usuarios.perfil = 'Administrador'";
+            String consulta = "SELECT * FROM tb_usuarios WHERE tb_usuarios.usuario = (?) AND tb_usuarios.contrasenna = (?)";
             pst = conexion.establecerConexion().prepareStatement(consulta);
             
             String contrasena = String.valueOf(contrasenna.getPassword());
@@ -39,7 +40,6 @@ public class RegistroLogin {
             //Ejecutar la consulta
             res = pst.executeQuery();
             
-            
             if(res.next()) {
                 String perfil = res.getString("perfil");
                 
@@ -47,7 +47,8 @@ public class RegistroLogin {
                     mostrarMensaje("Ha iniciado sesión corectamente. Bienvenido Administrador!");
                     new Controlador_Menu(); 
                 }else{
-                    mostrarMensaje("Ha iniciado sesión corectamente. Bienvenido Visitante!");
+                    mostrarMensaje("Ha iniciado sesión corectamente. Bienvenido Visitante!\n------------------------------------------------------------------------------\nAviso:\nSu perfil solo le permite ver la información.");
+                    new Controlador_Consulta(); 
                 }
             }else{
                 mostrarMensaje("Usuario o contraseña incorrectos.");

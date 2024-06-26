@@ -8,7 +8,9 @@ Vista\FRM_Menu.class
 Modelo\Conexion.class
 Modelo\RegistroLogin.class
 Modelo\Usuarios.class
+Controlador\Controlador_Consulta.class
 Controlador\ControladorLogin.class
+Vista\FRM_Consulta$1.class
 Vista\FRM_Login.class
 com\mycompany\proyectofinal_zapateria\ProyectoFinal_Zapateria.class
 Controlador\Controlador_Menu.class
@@ -17,4 +19,3 @@ Vista\FRM_Login$1.class
 Controlador\Controlador_RegistroUsuarios.class
 Controlador\exceptions\PreexistingEntityException.class
 Vista\FRM_Login$2.class
-Modelo\RegistroTabla.class

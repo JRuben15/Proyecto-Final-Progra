@@ -40,7 +40,23 @@ public class Usuarios implements Serializable {
     @Column(name = "perfil")
     private String perfil;
 
-    public Usuarios() {
+    public Usuarios( ) {
+       
+    }
+    
+     public Usuarios(Integer id, String usuario, String nombre, String contrasenna, String perfil) {
+        this.id = id;
+        this.usuario = usuario;
+        this.nombre = nombre;
+        this.contrasenna = contrasenna;
+        this.perfil = perfil;
+    }
+     
+    public Usuarios(String usuario, String nombre, String contrasenna, String perfil) {
+        this.usuario = usuario;
+        this.nombre = nombre;
+        this.contrasenna = contrasenna;
+        this.perfil = perfil;
     }
 
     public Usuarios(Integer id) {

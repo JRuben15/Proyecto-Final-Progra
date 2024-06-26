@@ -29,6 +29,7 @@ public class FRM_Login extends javax.swing.JFrame {
         initComponents();
         registroL = new RegistroLogin();
         usuarios = new Usuarios();
+        this.setLocationRelativeTo(null); //Comando para que el JFrame aparezaca en el centro de la pantalla.
     }
     
     public void escuchador(ActionListener manejador){

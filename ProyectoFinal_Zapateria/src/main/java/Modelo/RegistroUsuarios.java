@@ -18,20 +18,13 @@ public class RegistroUsuarios {
         this.listaUsuarios = new ArrayList<>();
     }
     
-    /*
-    //Tabla
-    public String[][] getMatrizUsuarios() {
-        //DEfinimos la Matriz
-        String[][] matrizUsuarios = new String[this.listaUsuarios.size()][Usuarios.TITULOS_USUARIOS.length];
-        
-        for(int f = 0; f < matrizUsuarios.length; f++) {
-            matrizUsuarios[f][0] = listaUsuarios.get(f).getUsuario();
-            matrizUsuarios[f][1] = listaUsuarios.get(f).getNombre();
-            matrizUsuarios[f][2] = listaUsuarios.get(f).getContrasenna();
-            matrizUsuarios[f][3] = listaUsuarios.get(f).getPerfil();
-        }//Fin FOR f
-        return matrizUsuarios;
-    }//FIn Metodo getMatrizCanciones
-
-*/
+     public String[] getComboUsuarios(){
+        String[] usuarios = new String[this.listaUsuarios.size()];
+        for (int i = 0; i < this.listaUsuarios.size(); i++) {
+            usuarios[i] = this.listaUsuarios.get(i).getUsuario();
+        }
+        return usuarios;
+    }
+    
+    
 }//Fin CLASS

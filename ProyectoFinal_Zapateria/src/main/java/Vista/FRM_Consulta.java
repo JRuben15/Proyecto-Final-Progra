@@ -4,7 +4,16 @@
  */
 package Vista;
 
+import Modelo.Conexion;
+import Modelo.Usuarios;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -12,7 +21,12 @@ import javax.swing.table.DefaultTableModel;
  * @author
  */
 public class FRM_Consulta extends javax.swing.JFrame {
-
+    Conexion conexion = new Conexion();
+    Connection conn; //Clase propia de MySQL
+    DefaultTableModel modeloTBL;
+    Statement st;
+    ResultSet res;
+    
     /**
      * Creates new form FRM_Consulta
      */
@@ -20,28 +34,56 @@ public class FRM_Consulta extends javax.swing.JFrame {
         initComponents();
     }
     
-     //Metodo para Llenar la tabla:
-    public void setDataTable(String[][] datos, String[] encabezado)
-    {
-        this.jTBUsuarios.setModel(new DefaultTableModel(datos, encabezado));
-        this.jScrollPane1.setViewportView(this.jTBUsuarios); //Cargar la Tabla y se vea la barra de Desplazamiento.
-    }//Fin Metodo
-    
-    //Devuelva Titulo de lo seleccionado (Llenar espacios)
-    public String[] getDataRow() {
-        String[] datosUsuarios = new String[this.jTBUsuarios.getColumnCount()];
-        int filaSeleccionada = this.jTBUsuarios.getSelectedRow();
+    //Método para llenar la Tabla con los datos de la Base.
+    public void llenarTabla() {
+        //Esta variable revisa los datos que estan en la tabla de la base de datos. 
+        String sql = "SELECT * FROM tb_usuarios"; 
         
-        for(int i = 0; i < datosUsuarios.length; i++) {
-            datosUsuarios[i] = this.jTBUsuarios.getValueAt(filaSeleccionada, i).toString();
-        }//Fin FOR
-        return datosUsuarios;
-    }//Fin Metodo DataRow
+        //Se crea un Try Catch para atraer los datos
+        try {
+            conn = conexion.establecerConexion();
+            st = conn.createStatement();
+            res = st.executeQuery(sql);
+            
+            // Crear un nuevo modelo de tabla
+            modeloTBL = new DefaultTableModel();
+        
+            // Agregar columnas al modelo
+            modeloTBL.addColumn("ID");
+            modeloTBL.addColumn("Usuario");
+            modeloTBL.addColumn("Nombre");
+            modeloTBL.addColumn("Contraseña");
+            modeloTBL.addColumn("Perfil");
+            
+           
+            while(res.next()) {
+                //Vector para especificar el número de columnas
+                Object[] obUsuario = new Object[5];  //Object es una clase Principal propia de java
+                 
+                
+                //Mientras se cumpla la función, que se llene la tabla con los datos de:
+                obUsuario [0] = res.getInt("ID");
+                obUsuario [1] = res.getString("Usuario");
+                obUsuario [2] = res.getString("Nombre");
+                obUsuario [3] = res.getString("Contrasenna");
+                obUsuario [4] = res.getString("Perfil");  
+                
+                modeloTBL.addRow(obUsuario);
+            }
+             jTBUsuarios.setModel(modeloTBL);
+        } catch (Exception e) {
+            //mostrarMensaje("Ha ocurrido un error!");
+        }
+    }//Fin Método LlenarTabla
     
-    //Escuchar tabla cuando se seleccione
-    public void escucharMouse(MouseListener manejador) {
-        this.jTBUsuarios.addMouseListener(manejador);
-    }//Fin Metodo escuchar Mouse
+    
+    public void mostrarMensaje(String mensaje){
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+    
+     public void escuchador(ActionListener manejador){
+        jBTNSalir.addActionListener(manejador);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,47 +94,80 @@ public class FRM_Consulta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTBUsuarios = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        jBTNSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Consulta");
+
+        jPanel1.setBackground(new java.awt.Color(255, 204, 255));
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
+        jLabel1.setText("Lista de Usuarios Registrados");
 
         jTBUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Usuario", "Nombre", "Contraseña", "Perfil"
+                "ID", "Usuario", "Nombre", "Contraseña", "Perfil"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTBUsuarios);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
-        jLabel1.setText("Lista de Usuarios Registrados");
+        jBTNSalir.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jBTNSalir.setText("Salir");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(141, 141, 141)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addComponent(jBTNSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
+                .addComponent(jBTNSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(84, 84, 84))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -104,7 +179,9 @@ public class FRM_Consulta extends javax.swing.JFrame {
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBTNSalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTBUsuarios;
     // End of variables declaration//GEN-END:variables

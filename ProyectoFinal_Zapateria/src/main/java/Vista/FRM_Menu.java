@@ -18,6 +18,7 @@ public class FRM_Menu extends javax.swing.JFrame {
      */
     public FRM_Menu() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     
     public void escuchadorMenu(ActionListener manejador) {
