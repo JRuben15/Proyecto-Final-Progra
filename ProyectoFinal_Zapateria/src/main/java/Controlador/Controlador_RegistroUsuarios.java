@@ -53,23 +53,60 @@ public class Controlador_RegistroUsuarios implements ActionListener { //, MouseL
            break;
     
            case "Modificar":
-               if(ventanaRegistroU.verificar() == true) {
-                   ventanaRegistroU.mensaje("No deben existir campos vacios."); 
-               }else{
-                   this.usuarios = ventanaRegistroU.getUsuario();
-                   ventanaRegistroU.cargarCombo(this.registroU.getComboUsuarios());
-                   ventanaRegistroU.mensaje(usuarioController.edit(usuarios));
-                   ventanaRegistroU.limpiar();   
-               }   
+               if (ventanaRegistroU.verificarId()) {
+                   ventanaRegistroU.mensaje("Debe proporcionar el ID del usuario a modificar.");
+                   return;
+               }
+
+               int idModificar = ventanaRegistroU.getIdUsuario();
+
+               Usuarios usuarioExistenteModificar = usuarioController.findUsuarios(idModificar);
+               if (usuarioExistenteModificar == null) {
+                   ventanaRegistroU.mensaje("No se encontró el usuario a modificar.");
+                   return;
+               }
+
+               if (ventanaRegistroU.verificar()) {
+                   ventanaRegistroU.mensaje("No deben existir campos vacíos para poder modificar al usuario.");
+                   return;
+               }
+
+               Usuarios usuarioModificar = ventanaRegistroU.getUsuario();
+
+               usuarioExistenteModificar.setUsuario(usuarioModificar.getUsuario());
+               usuarioExistenteModificar.setNombre(usuarioModificar.getNombre());
+               usuarioExistenteModificar.setContrasenna(usuarioModificar.getContrasenna());
+               usuarioExistenteModificar.setPerfil(usuarioModificar.getPerfil());
+
+               try {
+                   usuarioController.edit(usuarioExistenteModificar);
+                   ventanaRegistroU.mensaje("Usuario modificado correctamente.");
+                   ventanaRegistroU.limpiar();
+               } catch (Exception ex) {
+                   ventanaRegistroU.mensaje("Error al modificar el usuario: " + ex.getMessage());
+               }
            break;
-           
+               
            case "Consultar":
                new Controlador_Consulta();
            break;
            
            case "Eliminar":
-               //TABLA
+               if (ventanaRegistroU.verificarId()) {  
+                   ventanaRegistroU.mensaje("Debe proporcionar el ID del usuario a eliminar.");  
+                return;  
+                }  
                
+               int id = ventanaRegistroU.getIdUsuario();  
+               Usuarios usuarioExistenteE = usuarioController.findUsuarios(id);  
+               
+                if (usuarioExistenteE == null) {  
+                    ventanaRegistroU.mensaje("No se encontró el usuario a eliminar.");  
+                } else {  
+                    usuarioController.destroy(id);  
+                    ventanaRegistroU.mensaje("Usuario eliminado correctamente.");  
+                }  
+                ventanaRegistroU.limpiar();
            break;
            
            case "Salir":
